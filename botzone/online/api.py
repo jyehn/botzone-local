@@ -28,7 +28,7 @@ class BotzoneAPI:
 
     def get_bot(ver_id):
         try:
-            r = requests.get('https://botzone.org.cn/mybots/detail/version/' + ver_id, cookies = BotzoneAPI.cookies)
+            r = requests.get('https://botzone.org.cn/mybots/detail/version/' + ver_id, cookies = BotzoneAPI.cookies, verify=False)
         except:
             raise RuntimeError('Failed to connect to botzone.org!')
         if not r.ok:
@@ -43,7 +43,7 @@ class BotzoneAPI:
 
     def download_bot(bot_id, ver, target):
         try:
-            r = requests.get('https://botzone.org.cn/mybots/viewsrc/%s/%d?download=true' % (bot_id, ver), cookies = BotzoneAPI.cookies)
+            r = requests.get('https://botzone.org.cn/mybots/viewsrc/%s/%d?download=true' % (bot_id, ver), cookies = BotzoneAPI.cookies,verify=False)
         except:
             raise RuntimeError('Failed to connect to botzone.org!')
         if not r.ok:
@@ -63,7 +63,7 @@ class BotzoneAPI:
     
     def download_userfile(user_id, path):
         try:
-            r = requests.get('https://botzone.org.cn/downloaduserfiles/?uid=%s' % user_id, cookies = BotzoneAPI.cookies, stream = True)
+            r = requests.get('https://botzone.org.cn/downloaduserfiles/?uid=%s' % user_id, cookies = BotzoneAPI.cookies, stream = True,verify=False)
         except:
             raise RuntimeError('Failed to connect to botzone.org!')
         if not r.ok:

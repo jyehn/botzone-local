@@ -64,7 +64,7 @@ class SandBox:
         if self.config['compile_command'] is None: return
         # compile the code
         compile_command = self.config['compile_command'].format(code = self.path_code, target = self.path_target)
-        command = 'docker exec -it -u user %s /bin/bash -c "%s"' % (self.container, compile_command)
+        command = 'docker exec -t -u user %s /bin/bash -c "%s"' % (self.container, compile_command)
         p = subprocess.run(command, shell = True)
         if p.returncode != 0:
             raise RuntimeError('Compile error!')
